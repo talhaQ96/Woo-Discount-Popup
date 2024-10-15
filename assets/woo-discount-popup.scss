@@ -1,0 +1,267 @@
+#woo-discount-popup {
+	position: fixed;
+	top: 0; right: 0;
+	width: 100%;
+	height: 100%;
+	justify-content: center;
+	align-items: center;
+	z-index: 999;
+	background-color: rgba(0, 0, 0, 40%);
+	padding: 10px;
+	display: none;
+
+	@media (max-height: 650px) {
+		overflow-y: scroll;
+		align-items: flex-start;
+	}
+
+	&__overlay {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background-color: rgba(0, 0, 0, 50%);
+		z-index: -2;
+	}
+
+	&__wrapper {
+		max-width: 975px;
+		min-height: 625px;
+		position: relative;
+		display: flex;
+		justify-content: end;
+		align-items: center;
+		width: 100%;
+		padding: 10px;
+
+		@media (max-width: 991px) {
+			justify-content: center;
+			align-items: end;
+		}
+
+		@media (max-width: 767px) {
+			justify-content: center;
+			align-items: end;
+			min-height: 630px;
+		}
+
+		@media (max-width: 375px) {
+			min-height: 570px;
+		}
+
+		.close-icon {
+			position: absolute;
+			top: 30px;
+			right: 30px;
+			width: 24px;
+			height: 24px;
+			cursor: pointer;
+
+			&::before,
+			&::after{
+			  content: '';
+			  position: absolute;
+			  width: 100%;
+			  height: 1px;
+			  background-color: black;
+			  top: 50%;
+			  left: 0;
+			  transform: translateY(-50%);
+			  transition: all 0.3s ease-in-out;				
+			}
+
+			&::before {
+			  transform: translateY(-50%) rotate(45deg);
+			}
+
+			&::after {
+			  transform: translateY(-50%) rotate(-45deg);
+			}
+
+			&:hover {
+				&::before,
+				&::after {
+					background-color: #2494D2;
+				}
+			}
+		}
+
+		.popup-logo {
+			position: absolute;
+			top: 20px;
+			left: 20px;
+
+			svg {
+				max-width: 195px;
+				height: 100%;
+
+				@media (max-width: 574px) {
+					max-width: 150px;
+				}
+			}
+		}
+
+		.popup-bg {
+			display: flex;
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			inset: 0;
+			z-index: -2;
+			background: var(--color-dt-light);
+
+			@media (max-width: 991px) {
+				display: flex;
+				justify-content: center;
+				top: 0;
+				right: 0;
+				bottom: initial;
+			}
+
+			picture {
+			    display: flex;
+				flex-basis: 70%;
+
+				@media(max-width: 991px){
+					flex-basis: 100%;
+				}
+
+				img {
+					width: 100%;
+					height: 100%;
+					display: block;
+
+					@media (max-width: 767px) {
+						height: initial;
+					}
+				}
+			}
+		}
+
+		.popup-content {
+			background-color: #FFF;
+			max-width: 495px;
+			width: 100%;
+			height: 420px;
+			padding: 35px;
+			position: relative;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+
+			@media (max-width: 991px) {
+				height: 400px;
+			}
+
+			@media (max-width: 767px) {
+				max-width: 430px;
+				height: 410px;
+				padding: 30px;
+			}
+
+			@media (max-width: 374px) {
+				padding: 20px;
+			}
+
+			&::before {
+				@media (min-width: 575px) {
+					content: "";
+					position: absolute;
+					border: 1px solid #FFF;
+					width: 150px;
+					height: 210px;
+					top: -25px;
+					left: -25px;
+					z-index: -1;
+				}
+			}
+
+			&__wrapper {
+				width: 100%;
+
+				h2 {
+					font-size: 32px;
+					line-height: 32px;
+					font-weight: 500;
+					text-align: center;
+					color: #000;
+
+					@media (max-width: 767px) {
+						font-size: 26px;
+						line-height: 28px;
+					}
+				}
+
+				form {
+					text-align: center;
+
+					.email {
+						background: #f2f3f4;
+						color: #000;
+						height: auto;
+						width: 100%;
+						padding: 13px 15px;
+						margin-top: 30px;
+						border: none;
+						border-radius: 5px;
+						font-family: 'SF Pro Display', Arial, sans-serif;
+						font-weight: 500;
+						font-size: 1.8rem;
+						line-height: 1.2;
+						transition: border-color 0.3s ease-in-out, color 0.3s ease-in-out, text-fill-color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+
+						&:-webkit-autofill,
+						&:-webkit-autofill:focus {
+							transition: background-color 5000s ease-in-out 0s;
+						}
+					}
+
+					button[type="submit"] {
+						padding: 16px 41px;
+						min-height: initial;
+						font-size: 16px;
+						line-height: 16px;
+						border-radius: 2.5px;
+						box-shadow: none;
+						color: #FFF;
+
+						@media (max-width: 767px) {
+							font-size: 14px;
+							padding: 15px 28px;
+						}
+
+						&.yes {
+							background-color: #14CC9E;
+							margin-top: 30px;
+
+							&:hover {
+								background-color: #0D9D76;
+							}
+							
+							@media (max-width: 375px) {
+								width: 100%;
+							}
+						}
+
+						&[disabled]{
+			  				cursor: not-allowed;
+						}
+					}
+
+					.error {
+						border: 1px solid #F00;
+					}
+
+					.error-message {
+						color: #F00;
+						font-size: 16px;
+						line-height: 1.5;
+						text-align: left;
+					}
+				}
+			}
+		}
+	}
+ }
